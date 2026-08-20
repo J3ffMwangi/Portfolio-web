@@ -1,0 +1,8 @@
+{
+  "name": "Remix Jeff Mwangi Portfolio",
+  "description": "Personal portfolio of Jeff Mwangi, a software developer focused on software development, UI development, and user-centered digital experiences.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
