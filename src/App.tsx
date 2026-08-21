@@ -13,22 +13,33 @@ export default function App() {
   const [isNotFound, setIsNotFound] = useState<boolean>(false);
 
   useEffect(() => {
-    // Check if URL pathname or hash indicates 404 test
-    if (window.location.pathname !== "/" && window.location.pathname !== "") {
-      setIsNotFound(true);
-    }
+    const checkRoute = () => {
+      const pathname = window.location.pathname.replace(/\/$/, "");
+      // Valid paths including GitHub Pages subfolder
+      const validPaths = [
+        "",
+        "/",
+        "/Portfolio-web",
+        "/Portfolio-web/index.html",
+        "/index.html"
+      ];
 
-    const handlePopState = () => {
-      if (window.location.pathname !== "/" && window.location.pathname !== "") {
+      if (!validPaths.includes(pathname)) {
         setIsNotFound(true);
       } else {
         setIsNotFound(false);
       }
     };
 
+    checkRoute();
+
+    const handlePopState = () => {
+      checkRoute();
+    };
+
     window.addEventListener("popstate", handlePopState);
 
-    // IntersectionObserver to accurately track active section during scroll
+    // IntersectionObserver to track active section during scroll
     const sections = ["hero", "about", "projects", "skills", "contact"];
     const observerOptions = {
       root: null,
@@ -54,13 +65,14 @@ export default function App() {
       window.removeEventListener("popstate", handlePopState);
       observer.disconnect();
     };
-  }, [isNotFound]);
+  }, []);
 
   if (isNotFound) {
     return (
       <NotFound
         onBackHome={() => {
-          window.history.pushState({}, "", "/");
+          const basePath = window.location.pathname.includes("Portfolio-web") ? "/Portfolio-web/" : "/";
+          window.history.pushState({}, "", basePath);
           setIsNotFound(false);
         }}
       />
