@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Github, ArrowUpRight } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 interface NavbarProps {
   activeSection: string;
@@ -55,7 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
           </div>
         </a>
 
-        {/* Minimal Navigation items (no hamburger menu, clean and responsive) */}
+        {/* Minimal Navigation items */}
         <nav
           className="flex items-center gap-1 sm:gap-1.5 md:gap-2 bg-[#121826]/70 border border-slate-800/80 rounded-full px-2.5 py-1.5 backdrop-blur-sm"
           aria-label="Main Navigation"
@@ -82,18 +82,17 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
           })}
         </nav>
 
-        {/* GitHub External Link */}
+        {/* Direct Contact Button */}
         <div className="flex items-center gap-2">
           <a
-            href="https://github.com/J3ffMwangi"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 hover:border-slate-600 rounded-lg transition-all duration-200 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-            aria-label="Jeff Mwangi GitHub Profile"
+            href="#contact"
+            onClick={(e) => handleNavClick(e, "#contact")}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-cyan-300 hover:text-white bg-cyan-950/40 hover:bg-cyan-900/60 border border-cyan-800/50 hover:border-cyan-600 rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            aria-label="Get in touch"
           >
-            <Github className="w-3.5 h-3.5 text-slate-400 group-hover:text-cyan-300 transition-colors" />
-            <span className="hidden md:inline">GitHub</span>
-            <ArrowUpRight className="w-3 h-3 text-slate-500 group-hover:text-slate-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <Mail className="w-3.5 h-3.5 text-cyan-400" />
+            <span className="hidden sm:inline">Get In Touch</span>
+            <span className="sm:hidden">Contact</span>
           </a>
         </div>
       </div>

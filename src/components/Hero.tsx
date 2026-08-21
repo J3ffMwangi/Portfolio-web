@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowDown, Github, Mail, Sparkles, Terminal } from "lucide-react";
+import { ArrowDown, Mail, Phone, Sparkles, Terminal } from "lucide-react";
 import { Button } from "./Button.tsx";
 
 export const Hero: React.FC = () => {
@@ -112,18 +112,6 @@ export const Hero: React.FC = () => {
             >
               Contact Me
             </Button>
-
-            <a
-              href="https://github.com/J3ffMwangi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-3.5 text-sm font-medium text-slate-300 hover:text-white bg-[#111726]/80 hover:bg-[#182136] border border-slate-800 hover:border-slate-700 rounded-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-              aria-label="GitHub Profile"
-              id="hero-link-github"
-            >
-              <Github className="w-4 h-4 text-slate-400" />
-              <span>github.com/J3ffMwangi</span>
-            </a>
           </motion.div>
 
           {/* Quick Technical Highlights */}

@@ -4,10 +4,7 @@ import {
   CheckCircle2,
   Sparkles,
   Layers,
-  ArrowUpRight,
-  Github,
-  Shield,
-  BarChart3,
+  Code2,
 } from "lucide-react";
 import { Project } from "../types.ts";
 
@@ -140,31 +137,24 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
           </div>
         </div>
 
-        {/* Technologies List Tags & Link */}
+        {/* Technologies List Tags */}
         <div className="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs text-slate-400 font-medium mr-1">Stack:</span>
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 rounded-md bg-[#162035] border border-slate-700/80 text-xs font-medium text-slate-200 hover:border-slate-500 transition-colors"
+                className="px-3 py-1 rounded-md bg-[#162035] border border-slate-700/80 text-xs font-medium text-slate-200"
               >
                 {tech}
               </span>
             ))}
           </div>
 
-          <a
-            href="https://github.com/J3ffMwangi"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-cyan-300 font-medium ml-auto px-3 py-1.5 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 transition-all"
-            aria-label="View on GitHub"
-          >
-            <Github className="w-3.5 h-3.5" />
-            <span>GitHub Profile</span>
-            <ArrowUpRight className="w-3 h-3" />
-          </a>
+          <div className="inline-flex items-center gap-1.5 text-xs text-slate-400 font-medium ml-auto px-3 py-1 rounded-lg bg-slate-800/40 border border-slate-800">
+            <Code2 className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Engineered for Reliability</span>
+          </div>
         </div>
       </div>
     </motion.div>
@@ -185,7 +175,6 @@ export const Projects: React.FC = () => {
       description:
         "As part of a team building a mobile note-taking app in React Native, I focused on strengthening its security — implementing AES encryption so note content stays protected at rest, and using secure device keystores to safeguard the encryption keys themselves.",
       technologies: ["React Native", "AES Encryption", "Secure Keystore"],
-      githubUrl: "https://github.com/J3ffMwangi",
       highlights: [
         "AES-256 encryption for at-rest storage protection",
         "Hardware-backed keystore key isolation architecture",
@@ -203,7 +192,6 @@ export const Projects: React.FC = () => {
       description:
         "As part of a team building a personal budget tracking app, I focused on the user interface — designing how spending data is visualized, using charts to make expense patterns easy to understand at a glance.",
       technologies: ["React", "Tailwind CSS", "Recharts / Chart.js"],
-      githubUrl: "https://github.com/J3ffMwangi",
       highlights: [
         "Cognitive-first visual spending breakdown and layouts",
         "Dynamic category filtering with live recalculations",

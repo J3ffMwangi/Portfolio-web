@@ -70,8 +70,8 @@ export const Skills: React.FC = () => {
       iconName: "wrench",
       skills: [
         {
-          name: "Git/GitHub",
-          description: "Version control workflows, branch management, collaborative code review.",
+          name: "Git Version Control",
+          description: "Version control workflows, branch management, and collaborative development.",
         },
         {
           name: "VS Code",

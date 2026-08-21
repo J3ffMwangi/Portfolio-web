@@ -1,5 +1,5 @@
 import React from "react";
-import { Github, Mail, ArrowUp, Heart } from "lucide-react";
+import { Mail, Phone, ArrowUp } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
             <span className="font-heading font-bold text-slate-100 text-base">Jeff Mwangi</span>
           </div>
           <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-            Software engineer focused on building thoughtful, user-centered software.
+            Software developer focused on building thoughtful, user-centered software.
           </p>
         </div>
 
@@ -30,25 +30,23 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <div className="flex items-center gap-4 text-xs font-medium">
             <a
-              href="mailto:jeffmuriithi89@gmail.com"
+              href="mailto:mwasjeffrey3@gmail.com"
               className="text-slate-400 hover:text-cyan-300 transition-colors flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded"
               aria-label="Email Jeff Mwangi"
             >
-              <Mail className="w-3.5 h-3.5" />
-              <span>Email</span>
+              <Mail className="w-3.5 h-3.5 text-cyan-400" />
+              <span>mwasjeffrey3@gmail.com</span>
             </a>
 
             <span className="text-slate-700">•</span>
 
             <a
-              href="https://github.com/J3ffMwangi"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="tel:0792015482"
               className="text-slate-400 hover:text-purple-300 transition-colors flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded"
-              aria-label="Jeff Mwangi GitHub Profile"
+              aria-label="Call Jeff Mwangi"
             >
-              <Github className="w-3.5 h-3.5" />
-              <span>GitHub</span>
+              <Phone className="w-3.5 h-3.5 text-purple-400" />
+              <span>0792015482</span>
             </a>
           </div>
 
