@@ -22,7 +22,7 @@ export function Footer() {
 
           {/* Copyright / Tagline */}
           <p className="text-slate-400 text-sm flex items-center gap-1 text-center">
-            <span>Crafted & Engineered by CodeLoom</span>
+            <span>Crafted & Built by CodeLoom</span>
             <span className="text-slate-600">·</span>
             <span>© {currentYear} CodeLoom. All rights reserved.</span>
           </p>
