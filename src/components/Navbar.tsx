@@ -40,19 +40,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
           : "bg-transparent py-5"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        {/* Minimal Logo Mark */}
-        <a
-          href="#hero"
-          onClick={(e) => handleNavClick(e, "#hero")}
-          className="group flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-xl p-1"
-          aria-label="Home"
-        >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-purple-500 to-rose-500 p-[1px] shadow-sm shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-200">
-            <div className="w-full h-full bg-[#0b0f17] rounded-[11px] flex items-center justify-center font-heading font-bold text-xs text-white tracking-wider">
-              JM
-            </div>
-          </div>
+      <div className="flex items-center font-['JetBrains_Mono',monospace]">
+  <span className="text-white font-extrabold tracking-tight text-xl">Code</span>
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400 font-extrabold text-xl">Loom</span>
+</div>
         </a>
 
         {/* Minimal Navigation items */}
