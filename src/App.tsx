@@ -1,67 +1,67 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar.tsx";
-import { Hero } from "./components/Hero.tsx";
+import { HomeView } from "./components/HomeView.tsx";
 import { About } from "./components/About.tsx";
 import { Projects } from "./components/Projects.tsx";
 import { Skills } from "./components/Skills.tsx";
 import { Contact } from "./components/Contact.tsx";
 import { Footer } from "./components/Footer.tsx";
+import { PageType } from "./types.ts";
 
 export default function App() {
-  const [activeSection, setActiveSection] = useState<string>("hero");
+  const [currentPage, setCurrentPage] = useState<PageType>("home");
 
+  // Sync with URL hash for browser back/forward and bookmarking support
   useEffect(() => {
-    // IntersectionObserver to track active section during scroll
-    const sections = ["hero", "about", "projects", "skills", "contact"];
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -60% 0px",
-      threshold: 0,
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "").toLowerCase() as PageType;
+      const validPages: PageType[] = ["home", "about", "projects", "skills", "contact"];
+      if (validPages.includes(hash)) {
+        setCurrentPage(hash);
+      } else {
+        setCurrentPage("home");
+      }
     };
 
-    const observerCallback: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => {
-      observer.disconnect();
-    };
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
+  const handleNavigate = (page: PageType) => {
+    setCurrentPage(page);
+    window.location.hash = page === "home" ? "" : page;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <div className="min-h-screen bg-[#0b0f17] text-slate-100 flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200">
-      {/* Skip to Main Content for Accessibility */}
-      <a
-        href="#hero"
+    <div className="min-h-screen bg-[#0b0f17] text-slate-100 flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200 font-['Plus_Jakarta_Sans',sans-serif]">
+      {/* Skip Link */}
+      <button
+        type="button"
+        onClick={() => {
+          const main = document.getElementById("main-content");
+          if (main) main.focus();
+        }}
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-cyan-500 focus:text-black focus:font-bold focus:rounded-lg shadow-lg"
       >
         Skip to main content
-      </a>
+      </button>
 
-      {/* Sticky Navigation */}
-      <Navbar activeSection={activeSection} />
+      {/* Navigation */}
+      <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
 
-      {/* Main Content Sections */}
-      <main id="main-content" className="flex-1">
-        <Hero />
-        <About />
-        <Projects />
-        <Skills />
-        <Contact />
+      {/* Pages */}
+      <main id="main-content" className="flex-1 focus:outline-none">
+        {currentPage === "home" && <HomeView onNavigate={handleNavigate} />}
+        {currentPage === "about" && <About onNavigate={handleNavigate} />}
+        {currentPage === "projects" && <Projects />}
+        {currentPage === "skills" && <Skills />}
+        {currentPage === "contact" && <Contact />}
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer currentPage={currentPage} onNavigate={handleNavigate} />
     </div>
   );
 }
