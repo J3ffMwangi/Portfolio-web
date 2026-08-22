@@ -1,130 +1,105 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Code2, Sparkles } from "lucide-react";
+import { Mail, Sparkles, Code2 } from "lucide-react";
 
 interface NavbarProps {
   activeSection: string;
 }
 
-export function Navbar({ activeSection }: NavbarProps) {
+export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
-
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
+    { name: "Home", href: "#hero" },
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
     { name: "Contact", href: "#contact" },
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#0b0f17]/85 backdrop-blur-md border-b border-slate-800/80 shadow-lg shadow-black/20 py-3.5"
+          ? "bg-[#0b0f17]/85 backdrop-blur-md border-b border-slate-800/80 py-3.5 shadow-lg shadow-black/20"
           : "bg-transparent py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Brand Logo */}
-          <a
-            href="#hero"
-            className="group flex items-center gap-2.5 text-lg font-bold tracking-tight text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg p-1"
-            aria-label="CodeLoom Home"
-          >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
-              <Code2 className="w-5 h-5 text-white" />
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        {/* CodeLoom Logo Mark */}
+        <a
+          href="#hero"
+          onClick={(e) => handleNavClick(e, "#hero")}
+          className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-xl p-1"
+          aria-label="CodeLoom Home"
+        >
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-purple-500 to-rose-500 p-[1px] shadow-sm shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-200">
+            <div className="w-full h-full bg-[#0b0f17] rounded-[11px] flex items-center justify-center">
+              <Code2 className="w-4 h-4 text-cyan-400" />
             </div>
-            <div className="flex items-center font-['JetBrains_Mono',monospace]">
-              <span className="text-white font-extrabold tracking-tight text-xl">Code</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400 font-extrabold text-xl">Loom</span>
-            </div>
-          </a>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-full border border-slate-800/70 backdrop-blur-sm">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.href.replace("#", "");
-              return (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                    isActive
-                      ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-500/30"
-                      : "text-slate-300 hover:text-white hover:bg-slate-800/50"
-                  }`}
-                >
-                  {link.name}
-                </a>
-              );
-            })}
-          </nav>
-
-          {/* Action button */}
-          <div className="hidden md:flex items-center gap-3">
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/20 hover:shadow-cyan-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
-            >
-              <Sparkles className="w-4 h-4 text-cyan-200" />
-              <span>Get Started</span>
-            </a>
           </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/80 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-              aria-expanded={mobileMenuOpen}
-              aria-label="Toggle navigation menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+          <div className="flex items-center font-['JetBrains_Mono',monospace]">
+            <span className="text-white font-extrabold tracking-tight text-lg">Code</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400 font-extrabold text-lg">Loom</span>
           </div>
-        </div>
+        </a>
 
-        {/* Mobile Dropdown */}
-        {mobileMenuOpen && (
-          <div className="md:hidden mt-3 p-4 rounded-2xl bg-slate-900/95 border border-slate-800 backdrop-blur-xl shadow-2xl space-y-2">
-            {navLinks.map((link) => (
+        {/* Navigation items */}
+        <nav
+          className="flex items-center gap-1 sm:gap-1.5 md:gap-2 bg-[#121826]/70 border border-slate-800/80 rounded-full px-2.5 py-1.5 backdrop-blur-sm"
+          aria-label="Main Navigation"
+        >
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href.replace("#", "");
+            return (
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-200 hover:text-white hover:bg-slate-800/80 transition-colors"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`relative px-2.5 sm:px-3 py-1 text-xs sm:text-sm font-medium rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 ${
+                  isActive
+                    ? "text-white bg-slate-800 shadow-sm"
+                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/40"
+                }`}
               >
                 {link.name}
+                {isActive && (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full" />
+                )}
               </a>
-            ))}
-            <div className="pt-2">
-              <a
-                href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>Get Started</span>
-              </a>
-            </div>
-          </div>
-        )}
+            );
+          })}
+        </nav>
+
+        {/* Direct Contact Button */}
+        <div className="flex items-center gap-2">
+          <a
+            href="#contact"
+            onClick={(e) => handleNavClick(e, "#contact")}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-cyan-300 hover:text-white bg-cyan-950/40 hover:bg-cyan-900/60 border border-cyan-800/50 hover:border-cyan-600 rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            aria-label="Get in touch"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+            <span className="hidden sm:inline">Get In Touch</span>
+            <span className="sm:hidden">Contact</span>
+          </a>
+        </div>
       </div>
     </header>
   );
-}
+};
