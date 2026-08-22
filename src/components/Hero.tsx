@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowDown, Mail, Phone, Sparkles, Terminal } from "lucide-react";
+import { ArrowDown, Mail, Sparkles } from "lucide-react";
 import { Button } from "./Button.tsx";
 
 export const Hero: React.FC = () => {
@@ -41,7 +41,7 @@ export const Hero: React.FC = () => {
       id="hero"
       className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 overflow-hidden"
     >
-      {/* Subtle ambient light accents (restrained, no excessive blur or glowing slop) */}
+      {/* Ambient light accents */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-gradient-to-tr from-cyan-900/15 via-purple-900/10 to-rose-900/10 blur-3xl pointer-events-none -z-10 rounded-full" />
       <div className="absolute top-1/3 right-10 w-[280px] h-[280px] bg-blue-900/10 blur-3xl pointer-events-none -z-10 rounded-full" />
 
@@ -52,28 +52,27 @@ export const Hero: React.FC = () => {
           animate="visible"
           className="w-full space-y-7"
         >
-          {/* Subtle Status Chip */}
+          {/* Status Chip */}
           <motion.div variants={itemVariants} className="inline-flex items-center justify-center sm:justify-start">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#131b2c] border border-slate-800 text-xs text-slate-300 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="font-medium text-slate-200">Software Developer</span>
+              <span className="font-medium text-slate-200">Software Engineering Studio</span>
               <span className="text-slate-500">•</span>
-              <span className="text-cyan-400 font-medium">Focus on UI & Product</span>
+              <span className="text-cyan-400 font-medium">Digital Solutions</span>
             </div>
           </motion.div>
 
-          {/* Main Headline */}
+          {/* Main Headline with CodeLoom */}
           <motion.div variants={itemVariants} className="space-y-4">
             <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-extrabold tracking-tight leading-[1.08] text-slate-100 max-w-4xl">
-              <span className="text-gradient-electric">Developing software systems</span>
-              <br className="hidden sm:inline" />{" "}
-              <span className="text-slate-100">
-                and engineering{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-rose-300 to-cyan-300">
-                  user-centered digital applications.
-                </span>
+              We are{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400">
+                CodeLoom
               </span>
             </h1>
+            <p className="text-lg sm:text-xl text-slate-300 font-medium">
+              Software Engineering & Modern Digital Solutions
+            </p>
           </motion.div>
 
           {/* Supporting Text */}
@@ -81,8 +80,7 @@ export const Hero: React.FC = () => {
             variants={itemVariants}
             className="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed text-balance"
           >
-            Passionate about bridging the gap between robust software systems, automated workflows,
-            and intuitive, crafted user experiences.
+            We weave cutting-edge technology, scalable backend architectures, and pixel-perfect user interfaces into cohesive, high-impact digital experiences.
           </motion.p>
 
           {/* Hero CTAs & Links */}
@@ -110,11 +108,11 @@ export const Hero: React.FC = () => {
               iconPosition="left"
               id="hero-btn-contact"
             >
-              Contact Me
+              Contact Us
             </Button>
           </motion.div>
 
-          {/* Quick Technical Highlights */}
+          {/* Technical Highlights */}
           <motion.div
             variants={itemVariants}
             className="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl"
@@ -127,11 +125,11 @@ export const Hero: React.FC = () => {
               <p className="text-[12px] text-slate-400 mt-1">Design systems, Tailwind, responsive interfaces</p>
             </div>
             <div className="p-3.5 rounded-xl bg-[#111726]/60 border border-slate-800/80">
-              <div className="flex items-center gap-2 text-xs font-semibold text-rose-400">
-                <span className="w-2 h-2 rounded-full bg-rose-400" />
-                <span>Security & Systems</span>
+              <div className="flex items-center gap-2 text-xs font-semibold text-cyan-400">
+                <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                <span>Full-Stack & Cloud</span>
               </div>
-              <p className="text-[12px] text-slate-400 mt-1">AES encryption, Keystores, Java, C#</p>
+              <p className="text-[12px] text-slate-400 mt-1">React, Node.js, APIs & scalable architectures</p>
             </div>
           </motion.div>
         </motion.div>
